@@ -98,7 +98,8 @@
   function run(done) {
     const loader = document.getElementById('loader');
     done = done || function () {};
-    if (!loader) { done(); return; }
+    // No preloader on the page: just play the hero entrance (if any)
+    if (!loader) { if (!WD.utils.mq.reduced()) heroTimeline(); done(); return; }
 
     const isHome = loader.dataset.loaderType === 'home-page';
     let visited = false;
