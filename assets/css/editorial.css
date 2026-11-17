@@ -1,0 +1,94 @@
+/* ==========================================================================
+   WOODORA — Editorial type & colour system (matched to the reference)
+   Reference: PP Editorial New (display) + Space Mono (text), deep brown on
+   warm ivory. PP Editorial New is a commercial face, so Instrument Serif —
+   the closest free condensed editorial serif — stands in for it.
+   Loaded last so it governs every page.
+   ========================================================================== */
+
+:root {
+  --ff-display: "Instrument Serif", "PP Editorial New", "Times New Roman", serif;
+  --ff-text: "Space Mono", ui-monospace, monospace;
+
+  --main: #674113;                 /* reference deep brown */
+  --bg: #F4EFE7;                   /* reference warm ivory */
+  --accent: #674113;
+  --line: rgba(103, 65, 19, 0.18);
+  --line-light: rgba(244, 239, 231, 0.25);
+
+  --fs-caption: 0.75rem;           /* 12px (reference 11px, enlarged on request) */
+  --lh-caption: 1.45;
+  --fs-intro: 3rem;                /* 48px editorial paragraphs */
+}
+
+body {
+  font-family: var(--ff-text);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Display face everywhere the reference uses PP Editorial New */
+.heading-style-h1,
+.heading-style-h2,
+.hero_title_text,
+.introduce_title,
+.benefit_letter,
+.card_letter,
+.fancy-list_text,
+.menu_item,
+.footer_title,
+.cart_title,
+.product_title,
+.collection-hero_letter,
+.logo_wordmark {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Big headings keep their written mixed case ("SHAPE Your LIVING SPACE with …") */
+.heading-style-h1,
+.hero_title_text { text-transform: none; line-height: 1; }
+
+/* Everything else in display type renders uppercase, as in the reference */
+.introduce_title,
+.benefit_letter,
+.card_letter,
+.fancy-list_text,
+.menu_item,
+.footer_title,
+.cart_title,
+.product_title { text-transform: uppercase; }
+
+.is-em, .is-thin { font-weight: inherit; }
+
+/* Editorial story paragraphs: one sentence flowing across both blocks */
+.introduce_title { font-size: var(--fs-intro); line-height: 1; align-self: start; }
+
+/* Letters and labels in the main brown, light weight like the reference */
+.benefit_letter,
+.card_letter,
+.collection-hero_letter,
+.text-oak,
+.introduce_label { color: inherit; }
+.benefit_root.is-cta .benefit_letter { color: var(--bg); }
+
+/* Mono text never bold */
+.card_title, .benefit_title, .cart_item_name, .menu_item.is-current .menu_item_label,
+.product_price, .cart_row.is-total { font-weight: 400; }
+
+/* Image tints use the brand brown, as the reference does */
+.hero_background::after { background: linear-gradient(rgba(103, 65, 19, 0.3), rgba(103, 65, 19, 0.3)); }
+.sample_background::after { background: linear-gradient(rgba(60, 38, 11, 0.55), rgba(60, 38, 11, 0.35) 45%, rgba(60, 38, 11, 0.65)); }
+.fancy-list_fill { background: rgba(103, 65, 19, 0.08); }
+.cart_overlay, .modal_wrapper { background: rgba(60, 38, 11, 0.4); }
+
+@media (max-width: 1279px) {
+  :root { --fs-intro: 2.2rem; }
+}
+@media (max-width: 767px) {
+  :root { --fs-intro: 2rem; }
+}
+@media (max-width: 479px) {
+  :root { --fs-caption: 0.6875rem; --fs-intro: 1.75rem; }
+}

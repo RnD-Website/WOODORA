@@ -1,0 +1,159 @@
+/* ==========================================================================
+   WOODORA — Inner pages: Collection listing · Product detail
+   ========================================================================== */
+
+.page-top { padding-top: calc(var(--header-h) + 3.75rem); }
+
+/* --------------------------------------------------------------------------
+   Collection page
+   -------------------------------------------------------------------------- */
+.collection-hero { padding: 0 var(--gutter) var(--section-gap); }
+.collection-hero_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.breadcrumb { display: flex; gap: 0.5rem; align-items: center; opacity: 0.7; }
+.breadcrumb a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+.collection-hero_grid {
+  display: grid;
+  grid-template-columns: 62.5% 37.5%;
+  align-items: end;
+}
+.collection-hero_letter { color: var(--oak); font-weight: 200; }
+.collection-hero_text { padding-left: var(--gutter); max-width: 24rem; justify-self: end; }
+.collection-hero_media {
+  position: relative;
+  margin-top: 2.5rem;
+  height: 70vh;
+  overflow: hidden;
+}
+.collection-hero_media img { width: 100%; height: 120%; object-fit: cover; will-change: transform; }
+
+.collection-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 var(--gutter) 1.25rem;
+}
+.collection-filter a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: 1.75rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  transition: background-color 0.3s, color 0.3s;
+}
+.collection-filter a:hover,
+.collection-filter a.is-active { background: var(--main); color: var(--bg); border-color: var(--main); }
+.collection-grid { padding: 0 var(--gutter) var(--section-gap); }
+.collection-empty { padding: 4rem 0; text-align: center; opacity: 0.7; }
+
+/* --------------------------------------------------------------------------
+   Product page
+   -------------------------------------------------------------------------- */
+.product_root {
+  display: grid;
+  grid-template-columns: 62.5% 37.5%;
+  padding: 0 var(--gutter);
+  align-items: start;
+}
+.product_gallery { display: grid; grid-template-columns: 4.5rem 1fr; gap: var(--gutter); }
+.product_thumbs { display: flex; flex-direction: column; gap: 0.5rem; }
+.product_thumb {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  display: block;
+  overflow: hidden;
+  opacity: 0.45;
+  transition: opacity 0.4s;
+}
+.product_thumb.is-active, .product_thumb:hover { opacity: 1; }
+.product_thumb img { width: 100%; height: 100%; object-fit: cover; }
+.product_stage { position: relative; height: calc(100vh - var(--header-h) - 5rem); min-height: 28rem; overflow: hidden; }
+.product_stage .swiper { width: 100%; height: 100%; }
+.product_stage img { width: 100%; height: 100%; object-fit: cover; }
+.product_stage-nav {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--bg);
+}
+.product_stage-nav button { height: 1.75rem; padding: 0 0.75rem; border: 1px solid var(--line-light); }
+.product_stage-nav button:hover { background: var(--bg); color: var(--main); }
+
+.product_info {
+  position: sticky;
+  top: calc(var(--header-h) + 1.25rem);
+  padding-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.product_info-top { display: flex; justify-content: space-between; }
+.product_title { font-size: var(--fs-h2); font-weight: 300; line-height: 1; letter-spacing: -0.035em; }
+.product_price { font-size: 1rem; font-weight: 600; letter-spacing: 0.02em; }
+.product_description { text-transform: none; font-size: 0.875rem; line-height: 1.6; letter-spacing: 0; max-width: 28rem; }
+.variant_group { display: flex; flex-direction: column; gap: 0.625rem; }
+.variant_label { display: flex; justify-content: space-between; }
+.variant_options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.variant_option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.variant_option .swatch { width: 0.75rem; height: 0.75rem; border: 1px solid var(--line); }
+.variant_option.is-active { background: var(--main); color: var(--bg); border-color: var(--main); }
+.variant_option:not(.is-active):hover { border-color: var(--main); }
+.product_actions { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.5rem; }
+.qty_root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.25rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+}
+.qty_root button { width: 1.25rem; height: 100%; }
+.product_details { border-top: 1px solid var(--line); }
+.accordion_item { border-bottom: 1px solid var(--line); }
+.accordion_trigger { display: flex; justify-content: space-between; width: 100%; padding: 1rem 0; text-align: left; }
+.accordion_icon { transition: transform 0.5s var(--ease-custom); }
+.accordion_item.is-open .accordion_icon { transform: rotate(45deg); }
+.accordion_panel { height: 0; overflow: hidden; }
+.accordion_panel-inner { padding-bottom: 1rem; text-transform: none; font-size: 0.8125rem; line-height: 1.6; letter-spacing: 0; }
+.accordion_panel-inner dl { display: grid; grid-template-columns: 8rem 1fr; gap: 0.375rem 1rem; margin: 0; }
+.accordion_panel-inner dt { opacity: 0.6; }
+.accordion_panel-inner dd { margin: 0; }
+
+.related_section { padding: var(--section-gap) var(--gutter); }
+.related_header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.25rem; }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .product_root { grid-template-columns: 1fr; gap: 2.5rem; }
+  .product_info { position: relative; top: auto; padding-left: 0; }
+  .collection-hero_grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .collection-hero_text { padding-left: 0; justify-self: start; }
+  .collection-hero_media { height: 50vh; }
+}
+@media (max-width: 767px) {
+  .product_gallery { grid-template-columns: 1fr; }
+  .product_stage { height: auto; min-height: 0; aspect-ratio: 4 / 5; }
+  .product_thumbs { order: 2; flex-direction: row; }
+  .product_thumb { width: 4rem; }
+  .related_header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+}
