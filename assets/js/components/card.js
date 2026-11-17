@@ -15,6 +15,7 @@
     const url = `product.html?id=${p.id}`;
     return `
     <div class="card_root" data-card>
+      <div class="card_media">
       <a class="card_image-wrapper" href="${url}" aria-label="${esc(p.name)}">
         <img class="card_image" src="${src}" alt="${esc(p.name)}" loading="lazy">
         <img class="card_wave-image is-1" src="${src}" alt="" aria-hidden="true" loading="lazy">
@@ -22,15 +23,15 @@
         <img class="card_wave-image is-3" src="${src}" alt="" aria-hidden="true" loading="lazy">
         <div class="mosaic_root" animation="mosaic" number_of_columns="12"></div>
       </a>
-      <div class="card_hover-label">
-        <span>View details →</span>
-        <button class="card_quick-add" type="button" data-quick-add="${p.id}">Add to cart</button>
       </div>
       <div class="card_meta">
         <h3 class="card_title"><a href="${url}">${esc(p.name)}</a></h3>
         <span class="card_category">${esc(p.category)}</span>
       </div>
-      <div class="card_text">${priceRange(p)}</div>
+      <div class="card_text">
+        <span class="card_price">${priceRange(p)}</span>
+        <button class="card_quick-add" type="button" data-quick-add="${p.id}">Add to cart</button>
+      </div>
     </div>`;
   }
 

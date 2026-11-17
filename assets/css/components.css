@@ -307,6 +307,7 @@ body.menu-is-open .header_overlay { opacity: 1; visibility: visible; }
 .card_image-wrapper,
 .card_letter-wrapper {
   position: relative;
+  display: block;
   aspect-ratio: 346 / 415;
   overflow: hidden;
 }
@@ -331,6 +332,8 @@ body.menu-is-open .header_overlay { opacity: 1; visibility: visible; }
 }
 .card_wave-image.is-2 { filter: sepia(0.25) brightness(0.92); }
 .card_wave-image.is-3 { filter: none; }
+/* Hover label sits inside the image frame, never over the title row */
+.card_media { position: relative; }
 .card_hover-label {
   position: absolute;
   left: var(--gutter);
@@ -346,14 +349,16 @@ body.menu-is-open .header_overlay { opacity: 1; visibility: visible; }
   transition: opacity 0.5s var(--ease-out), transform 0.6s var(--ease-custom);
 }
 .card_quick-add {
-  height: 1.75rem;
+  height: 1.875rem;
   padding: 0 0.75rem;
-  border: 1px solid var(--line-light);
-  background: rgba(36, 35, 33, 0.25);
-  backdrop-filter: blur(4px);
+  border: 1px solid var(--main);
+  background: var(--bg);
+  color: var(--main);
+  text-shadow: none;
+  white-space: nowrap;
   transition: background-color 0.4s, color 0.4s;
 }
-.card_quick-add:hover { background: var(--bg); color: var(--main); }
+.card_quick-add:hover { background: var(--main); color: var(--bg); }
 @media (hover: hover) {
   .card_root:hover .card_hover-label { opacity: 1; transform: translateY(0); }
 }
@@ -365,7 +370,26 @@ body.menu-is-open .header_overlay { opacity: 1; visibility: visible; }
 }
 .card_title { font-size: var(--fs-caption); font-weight: 600; }
 .card_category { opacity: 0.55; text-align: right; }
-.card_text { margin-top: 1.3125rem; }
+.card_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 1.875rem;
+  margin-top: 0.75rem;
+  padding-right: var(--gutter);
+}
+/* Add to cart sits on the price row and appears on hover (always shown on touch) */
+.card_text .card_quick-add {
+  opacity: 0;
+  transform: translateY(0.375rem);
+  transition: opacity 0.4s var(--ease-out), transform 0.5s var(--ease-custom), background-color 0.4s, color 0.4s;
+}
+.card_root:hover .card_text .card_quick-add,
+.card_text .card_quick-add:focus-visible { opacity: 1; transform: none; }
+@media (hover: none) {
+  .card_text .card_quick-add { opacity: 1; transform: none; }
+}
 .card_letter {
   position: absolute;
   inset: 0;
@@ -632,7 +656,7 @@ textarea.form_input { resize: vertical; min-height: 6rem; }
   .card_meta { flex-direction: column; gap: 0.25rem; padding-top: 0.75rem; }
   .card_category { text-align: left; }
   .card_text { margin-top: 0.5rem; }
-  .card_quick-add { display: none; }
+  .card_text { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding-right: 0; }
   .footer_content { grid-template-columns: 1fr; }
   .footer_section { min-height: 0; }
   .footer_bottom { flex-direction: column; }
